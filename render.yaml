@@ -1,0 +1,21 @@
+# ════════════════════════════════════════════════════════════
+# OZI BOT — Render Blueprint (автоматический деплой)
+# Render прочитает этот файл и сам создаст сервис с нужными
+# настройками. Вручную настраивать ничего не нужно —
+# только вставить BOT_TOKEN и ADMIN_CHAT_ID при запросе.
+# ════════════════════════════════════════════════════════════
+services:
+  - type: web
+    name: ozi-bot
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    autoDeploy: true
+    envVars:
+      - key: BOT_TOKEN
+        sync: false        # Render попросит вставить токен при деплое
+      - key: ADMIN_CHAT_ID
+        sync: false        # Render попросит вставить ваш Telegram ID
+      - key: PYTHON_VERSION
+        value: 3.11.9
